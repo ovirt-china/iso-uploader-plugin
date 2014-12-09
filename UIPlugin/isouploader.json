@@ -1,0 +1,13 @@
+{
+   // Unique name of the plugin
+   "name": "IsoUploader",
+
+   // Url of plugin host page that bootstraps plugin code
+   "url": "plugin/IsoUploader/plugin.html",
+
+   // Path to plugin resource files relative to descriptor
+   "resourcePath": "isouploader-resources",
+
+   // Configuration
+   "config": {"allowedMessageOriginsJSON":{"allowedMessageOrigins": "https://192.168.3.46"}}
+}

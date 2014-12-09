@@ -1,0 +1,36 @@
+.navbar-tab {
+   margin: 5px;
+}
+
+.navbar-tab>.btn {
+   margin-right: 5px;
+}
+
+.container {
+   margin-right: 0px;
+   margin-left: 0px;
+   width: 100%;
+}
+
+/*--------------------Table--------------------*/
+
+.table>tbody>tr>.text-cell {
+  padding-top: 5px;
+}
+
+.nothing-to-display{
+  text-align: center;
+  color: #969696;
+  font-size: 16px ;
+}
+
+/*------------------Menu--------------------*/
+
+#menu {
+  padding: 5px;
+  display: inline-flex;
+}
+
+#menu .btn {
+  margin-right: 5px;
+}
