@@ -18,6 +18,22 @@
   padding-top: 5px;
 }
 
+.table>tbody>tr>td>.progress {
+  min-width: 100px;
+}
+
+.table>tbody>.paused>.text-cell {
+  color: #969696;
+}
+
+.table>tbody>.paused>td>.progress>.progress-bar {
+  background-color: #969696;
+}
+
+.table>tbody>.stopped>td>.progress>.progress-bar {
+  background-color: #d9534f;
+}
+
 .nothing-to-display{
   text-align: center;
   color: #969696;
@@ -33,4 +49,22 @@
 
 #menu .btn {
   margin-right: 5px;
+}
+
+/*------------Sticky footer styles----------*/
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 30px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 30px;
+  text-align: center;
 }

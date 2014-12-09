@@ -42,8 +42,8 @@
           <td class="text-cell">981 MB</td>
           <td>
             <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;">
-                <span>50%</span>
+              <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;">
+                <span>75%</span>
               </div>
             </div>
           </td>
@@ -64,14 +64,77 @@
             </div>
          </td>
       </tr>
+
+      <tr class="paused">
+        <td class="text-cell">Fedora-Live-Desktop-x86_64-20-1.iso</td>
+        <td class="text-cell">953 MB</td>
+        <td>
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="53" aria-valuemin="0" aria-valuemax="100" style="width: 53%;">
+              <span>53%</span>
+            </div>
+          </div>
+        </td>
+        <td class="text-cell">Paused</td>
+        <td class="text-cell">0.0 kB/s</td>
+        <td class="text-cell">--</td>
+        <td>
+          <div class="action-table">
+
+            <button class="btn btn-default" type="button">
+              <span class="glyphicon glyphicon-play"></span> Start
+            </button>
+
+            <button class="btn btn-danger" type="button">
+              <span class="glyphicon glyphicon-remove"></span> Cancel
+            </button>
+
+          </div>
+       </td>
+    </tr>
+
+    <tr class="stopped">
+      <td class="text-cell">archlinux-2014.12.01-dual.iso</td>
+      <td class="text-cell">578 MB</td>
+      <td>
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100" style="width: 99%;">
+            <span>99%</span>
+          </div>
+        </div>
+      </td>
+      <td class="text-cell">Impossible to upload the .iso file.</td>
+      <td class="text-cell">0.0 kB/s</td>
+      <td class="text-cell">--</td>
+      <td>
+        <div class="action-table">
+
+          <button class="btn btn-default" disabled type="button">
+            <span class="glyphicon glyphicon-pause"></span> Pause
+          </button>
+
+          <button class="btn btn-danger" type="button">
+            <span class="glyphicon glyphicon-remove"></span> Cancel
+          </button>
+
+        </div>
+     </td>
+  </tr>
+
     </tbody>
   </table>
 
-  <div ng-hide="domains.length" class="nothing-to-display">
+  <!-- <div ng-hide="domains.length" class="nothing-to-display">
     Nothing to show.
-  </div>
+  </div> -->
 
 </div>
+
+<footer class="footer">
+  <div class="container">
+    <p class="text-muted">Thanks for using this plugin. All the code is on <a href="https://github.com/ovirt-china/iso-uploader-plugin">GitHub</a>. Any problem or suggestion please <a href="https://github.com/ovirt-china/iso-uploader-plugin/issues/new">open an issue on GitHub</a>.</p>
+  </div>
+</footer>
 
   <script src="lib/jquery-1.11.1.min.js"></script>
   <script src="lib/angular/js/angular.js"></script>
