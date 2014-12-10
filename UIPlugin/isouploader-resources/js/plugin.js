@@ -4,7 +4,7 @@
 
 (function() {
 
-  var app = angular.module('plugin.init', ['plugin.common', 'plugin.translations']);
+  var app = angular.module('plugin.init', ['plugin.common']);
 
   app.service('contentWindowService', function(){
     var contentWindow = null ;
@@ -78,7 +78,7 @@
                   // case ('msg'):
                   //
                   //   break;
-                    
+
                   default:
                     console.warn('EMDPlugin just receive a message with an undefined action: ' + data.action);
                 }
