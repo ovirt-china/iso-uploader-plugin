@@ -48,12 +48,10 @@
         };
   });
 
-   app.factory('tabManager', ['pluginApi', 'urlUtil', 'translationService', function (pluginApi, urlUtil, translationService) {
+   app.factory('tabManager', ['pluginApi', 'urlUtil', function (pluginApi, urlUtil) {
       return {
          addTab: function () {
-            var  trans = translationService.translate();
-
-            pluginApi.addMainTab(trans.TAB_NAME, 'emd-tab', urlUtil.relativeUrl('tab.html'));
+            pluginApi.addMainTab('ISO Uploader', 'isouploader-tab', urlUtil.relativeUrl('tab.html'));
          }
       };
    }]);
