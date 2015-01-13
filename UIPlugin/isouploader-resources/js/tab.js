@@ -10,6 +10,12 @@
 
     console.log(dialogName + ' just launched.');
 
- }]);
+  }]);
+
+  app.controller('TableController', ['$scope', function($scope){
+
+    $scope.test = 'test';
+
+  }]);
 
 })();
