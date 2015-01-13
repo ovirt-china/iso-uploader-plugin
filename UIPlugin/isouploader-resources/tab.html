@@ -8,12 +8,16 @@
 </head>
 <body>
 
-  <div id="menu">
+  <div flow-init="{target: '/upload'}"
+  flow-files-submitted="$flow.upload()"
+  flow-file-success="$file.msg = $message">
 
-    <button class="btn btn-primary" type="button">
+  <div id="menu" >
+
+    <span class="btn btn-primary" type="button" flow-btn>
       <span class="glyphicon glyphicon-plus"></span>
       Upload
-    </button>
+    </span>
 
     <button class="btn btn-default" type="button">
       <span class="glyphicon glyphicon-pause"></span>
@@ -129,6 +133,8 @@
   </div> -->
 
 </div>
+
+</div> <!-- end of the flow div  -->
 
 <footer class="footer">
   <div class="container">
