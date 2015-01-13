@@ -2,7 +2,7 @@
 
 (function() {
 
-  var app = angular.module('plugin.tab', ['plugin.common']);
+  var app = angular.module('plugin.tab', ['plugin.common', 'flow']);
 
   app.value('dialogName', 'isouploader-tab');
 
