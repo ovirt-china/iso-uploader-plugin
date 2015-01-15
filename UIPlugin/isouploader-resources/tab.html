@@ -44,11 +44,11 @@
       <tbody>
         <tr ng-repeat="file in transfers">
           <td class="text-cell">{{file.name}}</td>
-          <td class="text-cell">{{file.size}}</td>
+          <td class="text-cell">{{file.size | bytes}}</td>
           <td>
             <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="{{file.progress() * 100}}" aria-valuemin="0" aria-valuemax="100" style="width: {{file.progress() * 100}}%;">
-                <span>{{file.progress() * 100}}%</span>
+              <div class="progress-bar" role="progressbar" aria-valuenow="{{file.progress() * 100 | number:0}}" aria-valuemin="0" aria-valuemax="100" style="width: {{file.progress() * 100 | number:0}}%;">
+                <span>{{file.progress() * 100 | number:0}}%</span>
               </div>
             </div>
           </td>
@@ -133,6 +133,7 @@
   <script src="lib/angular/js/angular.js"></script>
   <script src="js/common.js"></script>
   <script src="js/tab.js"></script>
+  <script src="js/filters.js"></script>
   <script src="lib/ng-flow-standalone.js"></script>
 </body>
 </html>
