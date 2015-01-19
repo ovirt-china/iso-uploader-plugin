@@ -58,7 +58,7 @@
           <td>
             <div class="progress">
               <!-- Change the color of the Progress Bar according to the status of the upload -->
-              <div class="progress-bar" role="progressbar" aria-valuenow="{{file.progress() * 100 | number:0}}" aria-valuemin="0" aria-valuemax="100" style="width: {{file.progress() * 100 | number:0}}%;" ng-hide="file.isComplete() || file.paused">
+              <div class="progress-bar" role="progressbar" aria-valuenow="{{file.progress() * 100 | number:0}}" aria-valuemin="0" aria-valuemax="100" style="width: {{file.progress() * 100 | number:0}}%;" ng-hide="file.isComplete() || file.paused || file.error">
                 <span>{{file.progress() * 100 | number:0}}%</span>
               </div>
 
