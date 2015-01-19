@@ -19,9 +19,19 @@
       Upload
     </span>
 
-    <a class="btn btn-default" ng-click="$flow.pause()" type="button">
+    <script>
+    console.log($flow.files);
+    </script>
+
+
+    <a class="btn btn-default" ng-click="$flow.pause()" type="button" ng-show="$flow.isUploading()&& !$flow.files">
       <span class="glyphicon glyphicon-pause"></span>
       Pause All
+    </a>
+
+    <a class="btn btn-default" ng-click="$flow.upload()" type="button" ng-hide="$flow.isUploading()&& !$flow.files">
+      <span class="glyphicon glyphicon-repeat"></span>
+      Resume All
     </a>
 
   </div>
@@ -72,7 +82,7 @@
             <span class="label label-success" ng-show="file.isComplete()">Complete</span>
           </td>
           <td class="text-cell">-- kB/s</td>
-          <td class="text-cell">-h --m</td>
+          <td class="text-cell">{{file.timeRemaining()| seconds}}</td>
           <td>
             <div class="action-table">
 
