@@ -86,16 +86,20 @@
           <td>
             <div class="action-table">
 
-              <a class="btn btn-default" type="button" ng-click="file.pause()" ng-hide="file.paused">
+              <a class="btn btn-default" type="button" ng-click="file.pause()" ng-hide="file.paused || file.isComplete() || file.error">
                 <span class="glyphicon glyphicon-pause"></span> Pause
               </a>
 
-              <a class="btn btn-default" type="button" ng-click="file.resume()" ng-show="file.paused">
+              <a class="btn btn-default" type="button" ng-click="file.resume()" ng-hide=" !file.paused || file.isComplete() || file.error">
                 <span class="glyphicon glyphicon-play"></span> Resume
               </a>
 
-              <a class="btn btn-danger" type="button" ng-click="file.cancel()">
+              <a class="btn btn-danger" type="button" ng-click="file.cancel()" ng-hide="file.isComplete() && !file.error">
                 <span class="glyphicon glyphicon-remove"></span> Cancel
+              </a>
+
+              <a class="btn btn-default" type="button" ng-click="file.cancel()" ng-show="file.isComplete() && !file.error">
+                <span class="glyphicon glyphicon-trash"></span> Remove from List
               </a>
 
               <a class="btn btn-primary" type="button" ng-click="file.retry()" ng-show="file.error">
