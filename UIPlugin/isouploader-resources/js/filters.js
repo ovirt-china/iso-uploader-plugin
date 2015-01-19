@@ -28,7 +28,7 @@
   app.filter('seconds', function() {
     return function(seconds) {
       if (isNaN(parseFloat(seconds)) || !isFinite(seconds)) {
-        return '-';
+        return '∞';
       }
 
       if (seconds === 0) {
