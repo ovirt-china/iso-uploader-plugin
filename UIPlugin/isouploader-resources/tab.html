@@ -19,20 +19,17 @@
       Upload
     </span>
 
-    <script>
-    console.log($flow.files);
-    </script>
-
-
-    <a class="btn btn-default" ng-click="$flow.pause()" type="button" ng-show="$flow.isUploading()&& !$flow.files">
+    <div ng-show="$flow.files">
+    <a class="btn btn-default" ng-click="$flow.pause()" type="button" ng-show="$flow.isUploading()">
       <span class="glyphicon glyphicon-pause"></span>
       Pause All
     </a>
 
-    <a class="btn btn-default" ng-click="$flow.upload()" type="button" ng-hide="$flow.isUploading()&& !$flow.files">
+    <a class="btn btn-default" ng-click="$flow.upload()" type="button" ng-hide="$flow.isUploading()">
       <span class="glyphicon glyphicon-repeat"></span>
       Resume All
     </a>
+  </div>
 
   </div>
 
@@ -113,39 +110,27 @@
                 <span class="glyphicon glyphicon-repeat"></span> Retry
               </a>
 
+              <script>
+              $(function () {
+                $('[data-toggle="popover"]').popover()
+              })
+              </script>
+
+              <a tabindex="0" class="btn btn-default" role="button" data-container="body" data-toggle="popover" data-html="true" data-trigger="focus" data-placement="left"
+              title="Additional Information"
+              data-content="
+              <ul>
+                <li><strong>Relative Path</strong>: {{file.relativePath}}</li>
+                <li><strong>Unique ID</strong>: {{file.uniqueIdentifier}} </li>
+                <li><strong>#Chunks</strong>: {{file.chunks.length}}</li>
+              </ul>
+              ">
+                <span class="glyphicon glyphicon-info-sign"></span> Info
+              </a>
             </div>
           </td>
+
         </tr>
-
-        <!-- <tr>
-          <td class="text-cell">ubuntu-14.04.1-desktop-amd64.iso</td>
-          <td class="text-cell">981 MB</td>
-          <td>
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;">
-                <span>75%</span>
-              </div>
-            </div>
-          </td>
-          <td class="text-cell">Uploading</td>
-          <td class="text-cell">370.2 kB/s</td>
-          <td class="text-cell">3h 45m</td>
-          <td>
-            <div class="action-table">
-
-              <button class="btn btn-default" type="button">
-                <span class="glyphicon glyphicon-pause"></span> Pause
-              </button>
-
-              <button class="btn btn-danger" type="button">
-                <span class="glyphicon glyphicon-remove"></span> Cancel
-              </button>
-
-            </div>
-         </td>
-      </tr> -->
-
-
 
     </tbody>
   </table>
@@ -165,10 +150,12 @@
 </footer>
 
   <script src="lib/jquery-1.11.1.min.js"></script>
+  <script src="lib/bootstrap.min.js"></script>
   <script src="lib/angular/js/angular.js"></script>
   <script src="js/common.js"></script>
   <script src="js/tab.js"></script>
   <script src="js/filters.js"></script>
   <script src="lib/ng-flow-standalone.js"></script>
+
 </body>
 </html>
