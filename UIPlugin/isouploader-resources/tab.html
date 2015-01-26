@@ -19,13 +19,13 @@
       Upload
     </span>
 
-    <div ng-show="$flow.files">
+    <div ng-show="$flow.getSize()">
     <a class="btn btn-default" ng-click="$flow.pause()" type="button" ng-show="$flow.isUploading()">
       <span class="glyphicon glyphicon-pause"></span>
       Pause All
     </a>
 
-    <a class="btn btn-default" ng-click="$flow.upload()" type="button" ng-hide="$flow.isUploading()">
+    <a class="btn btn-default" ng-click="$flow.resume()" type="button" ng-hide="$flow.isUploading()">
       <span class="glyphicon glyphicon-repeat"></span>
       Resume All
     </a>
@@ -58,11 +58,12 @@
           <td>
             <div class="progress">
               <!-- Change the color of the Progress Bar according to the status of the upload -->
-              <div class="progress-bar" role="progressbar" aria-valuenow="{{file.progress() * 100 | number:0}}" aria-valuemin="0" aria-valuemax="100" style="width: {{file.progress() * 100 | number:0}}%;" ng-hide="file.isComplete() || file.paused">
+
+              <div class="progress-bar" role="progressbar" aria-valuenow="{{file.progress() * 100 | number:0}}" aria-valuemin="0" aria-valuemax="100" style="width: {{file.progress() * 100 | number:0}}%;" ng-hide="file.isComplete() || file.paused || file.error">
                 <span>{{file.progress() * 100 | number:0}}%</span>
               </div>
 
-              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{file.progress() * 100 | number:0}}" aria-valuemin="0" aria-valuemax="100" style="width: {{file.progress() * 100 | number:0}}%;" ng-show="file.isComplete()">
+              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{file.progress() * 100 | number:0}}" aria-valuemin="0" aria-valuemax="100" style="width: {{file.progress() * 100 | number:0}}%;" ng-show="file.isComplete() && !file.error">
                 <span>{{file.progress() * 100 | number:0}}%</span>
               </div>
 
@@ -78,9 +79,11 @@
           </td>
 
           <td class="text-cell">
+            <span class="label label-danger" ng-show="file.error">Error</span>
             <span class="label label-warning" ng-show="file.paused">Paused</span>
-            <span class="label label-default" ng-show="file.isUploading()">Uploading</span>
-            <span class="label label-success" ng-show="file.isComplete()">Complete</span>
+            <span class="label label-primary" ng-show="file.isUploading()">Uploading</span>
+            <span class="label label-success" ng-show="file.isComplete() && !file.error">Complete</span>
+            <span class="label label-default" ng-hide="file.error || file.paused || file.isUploading() || file.isComplete()">Waiting</span>
           </td>
 
           <td class="text-cell">{{file.averageSpeed | bytes}}/s</td>
@@ -135,8 +138,8 @@
     </tbody>
   </table>
 
-  <div ng-hide="domains.length" class="nothing-to-display">
-    To upload a new .iso file click on the button Upload.
+  <div ng-hide="$flow.getSize()" class="nothing-to-display">
+    No files to display.
   </div>
 
 </div>
