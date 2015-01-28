@@ -6,8 +6,8 @@
            version="2.5">
 
     <servlet>
-        <servlet-name>IsoUploadServlet</servlet-name>
-        <servlet-class>org.ovirtChina.enginePlugin.isoUploaderPlugin</servlet-class>
+        <servlet-name>UploadServlet</servlet-name>
+        <servlet-class>org.ovirtChina.enginePlugin.isoUploaderPlugin.UploadServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>UploadServlet</servlet-name>
