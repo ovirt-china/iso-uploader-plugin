@@ -1,4 +1,4 @@
-package resumable.js.upload;
+package org.ovirtChina.enginePlugin.isoUploaderPlugin;
 
 import java.io.*;
 import java.util.HashMap;
@@ -55,7 +55,7 @@ public class ResumableInfoStorage {
     }
 
     /**
-     * É¾³ýResumableInfo
+     * É¾ï¿½ï¿½ResumableInfo
      * @param info
      */
     public void remove(ResumableInfo info) {

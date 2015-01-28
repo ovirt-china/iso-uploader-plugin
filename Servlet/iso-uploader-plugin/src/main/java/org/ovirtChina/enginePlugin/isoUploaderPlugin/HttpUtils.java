@@ -1,4 +1,4 @@
-package resumable.js.upload;
+package org.ovirtChina.enginePlugin.isoUploaderPlugin;
 
 /**
  * by fanxu123

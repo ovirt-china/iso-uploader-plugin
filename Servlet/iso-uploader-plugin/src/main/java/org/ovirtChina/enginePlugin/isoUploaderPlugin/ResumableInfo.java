@@ -1,4 +1,4 @@
-package resumable.js.upload;
+package org.ovirtChina.enginePlugin.isoUploaderPlugin;
 
 import java.io.File;
 import java.util.HashSet;

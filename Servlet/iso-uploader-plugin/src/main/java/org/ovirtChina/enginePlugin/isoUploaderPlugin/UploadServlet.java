@@ -1,4 +1,4 @@
-package resumable.js.upload;
+package org.ovirtChina.enginePlugin.isoUploaderPlugin;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +8,10 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.RandomAccessFile;
+
+import org.ovirtChina.enginePlugin.isoUploaderPlugin.HttpUtils;
+import org.ovirtChina.enginePlugin.isoUploaderPlugin.ResumableInfo;
+import org.ovirtChina.enginePlugin.isoUploaderPlugin.ResumableInfoStorage;
 
 /**
  *
