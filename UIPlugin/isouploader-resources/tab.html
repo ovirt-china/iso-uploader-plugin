@@ -9,10 +9,6 @@
 <body>
 
   <div flow-init="{target: 'http://192.168.3.227:8080/isoUploaderPlugin/upload',
-            chunkSize: '1*1024*1024',
-            simultaneousUploads: '4',
-            testChunks: 'true',
-            throttleProgressCallbacks: '1',
             method: 'octet' }"
 
   flow-files-submitted="$flow.upload()"
