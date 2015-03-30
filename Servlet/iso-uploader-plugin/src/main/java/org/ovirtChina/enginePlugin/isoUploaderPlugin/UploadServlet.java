@@ -21,7 +21,7 @@ import org.ovirtChina.enginePlugin.isoUploaderPlugin.FlowInfoStorage;
  */
 public class UploadServlet extends HttpServlet {
 
-    public static final String UPLOAD_DIR = "e:\\";
+    public static final String UPLOAD_DIR = "uploads";
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int flowChunkNumber = getFlowChunkNumber(request);
@@ -54,6 +54,7 @@ public class UploadServlet extends HttpServlet {
         if (info.checkIfUploadFinished()) { //Check if all chunks uploaded, and change filename
             FlowInfoStorage.getInstance().remove(info);
             response.getWriter().print("All finished.");
+            System.out.println(info.flowFilename + "is uploaded.");
         } else {
             response.getWriter().print("Upload");
         }
@@ -85,19 +86,22 @@ public class UploadServlet extends HttpServlet {
         String flowRelativePath    = request.getParameter("flowRelativePath");
 
         //DEBUG
-        System.out.println(
-        "base_dir = " + base_dir + "\n"
-        + "flowChunkSize = " + flowChunkSize + "\n"
-        + "flowTotalSize = " + flowTotalSize + "\n"
-        + "flowIdentifier = " + flowIdentifier + "\n"
-        + "flowFilename = " + flowFilename + "\n"
-        + "flowRelativePath = " + flowRelativePath
-        );
+        // System.out.println(
+        // "base_dir = " + base_dir + "\n"
+        // + "flowChunkSize = " + flowChunkSize + "\n"
+        // + "flowTotalSize = " + flowTotalSize + "\n"
+        // + "flowIdentifier = " + flowIdentifier + "\n"
+        // + "flowFilename = " + flowFilename + "\n"
+        // + "flowRelativePath = " + flowRelativePath
+        // );
         //!DEBUG
 
-
         //Here we add a ".temp" to every upload file to indicate NON-FINISHED
-        String flowFilePath        = new File(base_dir, flowFilename).getAbsolutePath() + ".temp";
+        File flowFile = new File(base_dir, flowFilename);
+        flowFile.getParentFile().mkdirs();
+
+        String flowFilePath        = flowFile.getAbsolutePath() + ".temp";
+
 
         FlowInfoStorage storage = FlowInfoStorage.getInstance();
 
