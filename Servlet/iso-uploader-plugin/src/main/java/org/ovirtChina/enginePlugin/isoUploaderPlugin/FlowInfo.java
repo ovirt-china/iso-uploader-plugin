@@ -53,8 +53,11 @@ public class FlowInfo {
     }
     public boolean checkIfUploadFinished() {
         //check if upload finished
+
+
         int count = (int) Math.ceil(((double) flowTotalSize) / ((double) flowChunkSize));
-        for(int i = 1; i < count + 1; i ++) {
+        for(int i = 1; i < count ; i ++) {
+
             if (!uploadedChunks.contains(new FlowChunkNumber(i))) {
                 return false;
             }

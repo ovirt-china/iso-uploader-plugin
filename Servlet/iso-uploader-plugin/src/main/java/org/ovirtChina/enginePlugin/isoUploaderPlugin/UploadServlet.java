@@ -13,18 +13,13 @@ import org.ovirtChina.enginePlugin.isoUploaderPlugin.HttpUtils;
 import org.ovirtChina.enginePlugin.isoUploaderPlugin.FlowInfo;
 import org.ovirtChina.enginePlugin.isoUploaderPlugin.FlowInfoStorage;
 
-/**
- *
- * This is a servlet demo,  for using Flow.js to upload files.
- *
- * by fanxu123
- */
 public class UploadServlet extends HttpServlet {
 
     public static final String UPLOAD_DIR = "uploads";
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int flowChunkNumber = getFlowChunkNumber(request);
+
 
         FlowInfo info = getFlowInfo(request);
 
@@ -51,17 +46,23 @@ public class UploadServlet extends HttpServlet {
 
         //Mark as uploaded.
         info.uploadedChunks.add(new FlowInfo.FlowChunkNumber(flowChunkNumber));
+
+        // Print the number
+        System.out.println("Chunk #" + flowChunkNumber + " of " + info.flowFilename + " has been uploaded.");
+
         if (info.checkIfUploadFinished()) { //Check if all chunks uploaded, and change filename
             FlowInfoStorage.getInstance().remove(info);
             response.getWriter().print("All finished.");
-            System.out.println(info.flowFilename + "is uploaded.");
+
+            System.out.println(info.flowFilename + " is completed.");
+            
         } else {
             response.getWriter().print("Upload");
         }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int flowChunkNumber        = getFlowChunkNumber(request);
+        int flowChunkNumber = getFlowChunkNumber(request);
 
         FlowInfo info = getFlowInfo(request);
 
@@ -96,12 +97,14 @@ public class UploadServlet extends HttpServlet {
         // );
         //!DEBUG
 
-        //Here we add a ".temp" to every upload file to indicate NON-FINISHED
+
         File flowFile = new File(base_dir, flowFilename);
+
+        // Create the folder if it doesn't exist yet
         flowFile.getParentFile().mkdirs();
 
-        String flowFilePath        = flowFile.getAbsolutePath() + ".temp";
-
+        //Here we add a ".temp" to every upload file to indicate NON-FINISHED
+        String flowFilePath = flowFile.getAbsolutePath() + ".temp";
 
         FlowInfoStorage storage = FlowInfoStorage.getInstance();
 
