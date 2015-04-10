@@ -12,6 +12,8 @@ import java.io.FileWriter;
 
 public class CommandExecuter {
 
+	private String lineAskingPassword = "Please provide the REST API password for the admin@internal oVirt Engine user (CTRL+D to abort):";
+
 	public CommandExecuter() {
 	}
 
@@ -42,22 +44,49 @@ public class CommandExecuter {
 
 		StringBuffer output = new StringBuffer();
 
-		Process p;
 		try {
-			p = Runtime.getRuntime().exec(command);
+			ProcessBuilder builder = new ProcessBuilder("/bin/bash");
+			builder.redirectErrorStream(true);
+			Process p = builder.start();
 
-      Writer wr = new OutputStreamWriter(p.getOutputStream());
-
-			//p.waitFor();
+			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(p.getOutputStream()));
 			BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
-      wr.write( "abc123\n" );
-      wr.flush();
+			writer.write( command );
+			writer.flush();
 
-      String line = "";
+		  String line = "";
+
 			while ((line = reader.readLine())!= null) {
 				output.append(line + "\n");
+
+				System.out.println(line);
+
+				if (line.contains(lineAskingPassword)){
+					writer.write( "abc123\n" );
+					writer.flush();
+				}
+
 			}
+
+
+
+		// Process p;
+		// try {
+		// 	p = Runtime.getRuntime().exec(command);
+		//
+    //   Writer wr = new OutputStreamWriter(p.getOutputStream());
+		//
+		// 	//p.waitFor();
+		// 	BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+		//
+    //   wr.write( "abc123\n" );
+    //   wr.flush();
+		//
+    //   String line = "";
+		// 	while ((line = reader.readLine())!= null) {
+		// 		output.append(line + "\n");
+		// 	}
 
 		} catch (Exception e) {
 			e.printStackTrace();
