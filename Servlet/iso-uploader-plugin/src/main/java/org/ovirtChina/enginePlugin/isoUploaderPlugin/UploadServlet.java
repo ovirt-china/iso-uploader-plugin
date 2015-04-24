@@ -12,6 +12,7 @@ import java.io.RandomAccessFile;
 import org.ovirtChina.enginePlugin.isoUploaderPlugin.HttpUtils;
 import org.ovirtChina.enginePlugin.isoUploaderPlugin.FlowInfo;
 import org.ovirtChina.enginePlugin.isoUploaderPlugin.FlowInfoStorage;
+import org.ovirtChina.enginePlugin.isoUploaderPlugin.CommandExecuter;
 
 public class UploadServlet extends HttpServlet {
 
@@ -54,8 +55,10 @@ public class UploadServlet extends HttpServlet {
             FlowInfoStorage.getInstance().remove(info);
             response.getWriter().print("All finished.");
 
+            list();
+
             System.out.println(info.flowFilename + " is completed.");
-            
+
         } else {
             response.getWriter().print("Upload");
         }
@@ -116,4 +119,9 @@ public class UploadServlet extends HttpServlet {
         }
         return info;
     }
+
+  private void list(){
+    CommandExecuter cmdExe = new CommandExecuter();
+    cmdExe.list();
+  }
 }

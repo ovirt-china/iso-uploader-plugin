@@ -14,8 +14,7 @@ public class CommandExecuter {
 
 	private String lineAskingPassword = "Please provide the REST API password for the admin@internal oVirt Engine user (CTRL+D to abort):";
 
-	public CommandExecuter() {
-	}
+	public CommandExecuter() {}
 
   /**
   * Execute and return a Response for the command list
@@ -42,27 +41,35 @@ public class CommandExecuter {
 
     System.out.println("Executing command: " + command);
 
-		StringBuffer output = new StringBuffer();
+		String[] commands = new String[]{"/bin/sh","-c",command};
+
+		StringBuffer outputBuf = new StringBuffer();
 
 		try {
-			ProcessBuilder builder = new ProcessBuilder("/bin/bash");
+			ProcessBuilder builder = new ProcessBuilder(commands);
 			builder.redirectErrorStream(true);
 			Process p = builder.start();
 
 			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(p.getOutputStream()));
 			BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
-			writer.write( command );
-			writer.flush();
-
 		  String line = "";
 
-			while ((line = reader.readLine())!= null) {
-				output.append(line + "\n");
+			line = reader.readLine();
+			System.out.println(line);
 
-				System.out.println(line);
+			writer.write( "abc123\n" );
+			writer.flush();
+
+			while ((line = reader.readLine())!= null) {
+				outputBuf.append(line + "\n");
+
+				//System.out.println(line);
+				System.out.println("New Output is: " + line);
 
 				if (line.contains(lineAskingPassword)){
+					System.out.println("CLI requests password");
+
 					writer.write( "abc123\n" );
 					writer.flush();
 				}
@@ -92,8 +99,8 @@ public class CommandExecuter {
 			e.printStackTrace();
 		}
 
-    System.out.println("Output: " + output.toString().trim());
-		return output.toString().trim();
-
+    System.out.println("Output: " + outputBuf.toString().trim());
+		return outputBuf.toString().trim();
 	}
+
 }
